@@ -5,3 +5,8 @@
 <p><%= @user.password %></p>
 
 <a href="/users">Home</a>
+
+<form action="/users/<%= @user.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete">
+</form>
