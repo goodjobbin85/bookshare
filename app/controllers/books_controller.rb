@@ -31,5 +31,31 @@ class BooksController < Sinatra::Base
     redirect to "/books/#{@book.id}"
   end
 
+  get '/books/:id/edit' do
+    @book = Book.find(params[:id])
+    erb :'books/edit'
+  end
+
+  patch '/books/:id' do
+    @book = Book.find(params[:id])
+    @book.title = params[:title]
+    @book.author = params[:author]
+    @book.year_published = params[:year_published]
+    @book.condition = params[:condition]
+    @book.save
+    redirect to "/books/#{@book.id}"
+  end
+
+
+
+
+
+
+
+
+
+
+
+
 
 end
