@@ -55,7 +55,7 @@ class ApplicationController < Sinatra::Base
     @user.email = params[:email]
     @user.password = params[:password]
     @user.save
-    redirect "/users/#{@user.id}"
+    redirect "/users/#{params[:id]}"
   end
 
 
