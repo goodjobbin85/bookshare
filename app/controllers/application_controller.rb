@@ -12,12 +12,9 @@ class ApplicationController < Sinatra::Base
     erb :'/users/index'
   end
 
-
-
-
-
-  get '/users/new' do
-    erb :'users/new'
+  get '/users' do
+    @users = User.all
+    erb :'/users/index'
   end
 
   post '/users' do
@@ -29,21 +26,38 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/users' do
-    @users = User.all
-    erb :'/users/index'
+  get '/users/new' do
+    erb :'users/new'
   end
+
+
 
   get "/users/:id" do
     @user = User.find(params[:id])
     erb :'users/show'
   end
 
-#fix this delete request later
-  post '/users/:id' do
+  #fix this delete request later
+    delete '/users/:id' do
+      @user = User.find(params[:id])
+      @user.delete
+      redirect '/users'
+    end
+
+  get "/users/:id/edit" do
     @user = User.find(params[:id])
-    @user.delete
-    redirect '/users'
+    erb :'users/edit'
   end
+
+  patch "/users/:id" do
+    @user = User.find(params[:id])
+    @user.name = params[:name]
+    @user.email = params[:email]
+    @user.password = params[:password]
+    @user.save
+    redirect "/users/#{@user.id}"
+  end
+
+
 
 end
