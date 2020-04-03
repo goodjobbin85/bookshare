@@ -46,6 +46,12 @@ class BooksController < Sinatra::Base
     redirect to "/books/#{@book.id}"
   end
 
+  delete '/books/:id' do
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect '/books'
+  end
+
 
 
 

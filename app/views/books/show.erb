@@ -4,3 +4,8 @@
 <p>Author: <%= @book.author %></p>
 <p>Year Published: <%= @book.year_published %></p>
 <p>Condition: <%= @book.condition %></p>
+
+<form action="/books/<%= @book.id %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>
