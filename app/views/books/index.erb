@@ -1,5 +1,16 @@
-<h1>All Books </h1>
-
-<% @books.each do |book| %>
-  <p><%= book.title %></p>
-<% end %>
+<div align="center">
+  <h1>Welcome To Bookshare!</h1>
+  <p>
+    Our mission is to help spread knowledge and no cost.
+    Here is a list of all books available to be borrowed, and
+    returned at any time! Help the community out by offering to
+    lend your books to those that may be interested. Lets learn
+    together! 
+  </p>
+</div>
+<div align="center">
+  <% @books.each do |book| %>
+    <p><a href="/books/<%= book.id %>"><%= book.title %></a> written by
+      <%= book.author %></p>
+  <% end %>
+</div>

@@ -4,9 +4,17 @@
 <p><%= @user.email %></p>
 <p><%= @user.password %></p>
 
+
 <a href="/users">Home</a>
 <a href="/users/<%= @user.id %>/edit">Edit</a>
 <form action="/users/<%= @user.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="delete">
 </form>
+
+<h1>All Your Books</h1>
+<ol>
+  <% @user.books.each do |book| %>
+    <li><a href="/books/<%= book.id %>"><%= book.title %></a></li>
+  <% end %>
+</ol>
