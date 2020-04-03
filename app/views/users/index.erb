@@ -1,8 +1,11 @@
-<h1> All Users | <a href="/users/new">Create New User</a> </h1>
 
-<ul>
-    <% @users.each do |user| %>
-      <li><a href="/users/<%= user.id %>"><%= user.name %></a> |
-      <a href="/users/<%= user.id %>/edit">Edit</a></li>
-    <% end %>
-</ul>
+<div align="center">
+  <h1> All Users | <a href="/users/new">Create New User</a> </h1>
+
+  <ul>
+      <% @users.each do |user| %>
+        <li><a href="/users/<%= user.id %>"><%= user.name %></a> |
+        <a href="/users/<%= user.id %>/edit">Edit</a></li>
+      <% end %>
+  </ul>
+</div>

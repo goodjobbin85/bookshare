@@ -1,10 +1,13 @@
 <h1>Book Details</h1>
+<p><a href="/books">All Books</a></p>
 
 <p>Title: <%= @book.title %></p>
 <p>Author: <%= @book.author %></p>
 <p>Year Published: <%= @book.year_published %></p>
 <p>Condition: <%= @book.condition %></p>
-<p>Owner: <%= @book.user.name %></p>
+<% if @book.user %>
+  <p>Owner: <%= @book.user.name %></p>
+<% end %>
 
 <form action="/books/<%= @book.id %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="delete">
