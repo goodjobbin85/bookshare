@@ -23,11 +23,13 @@ class BooksController < Sinatra::Base
 
   post '/books' do
     @book = Book.new
+    @book.user_id = session[:user_id]
     @book.title = params[:title]
     @book.author = params[:author]
     @book.year_published = params[:year_published]
     @book.condition = params[:condition]
     @book.save
+    binding.pry
     redirect to "/books/#{@book.id}"
   end
 

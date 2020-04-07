@@ -16,20 +16,23 @@ class UsersController < Sinatra::Base
     erb :'users/new'
   end
 
-  get "/users/:id" do
-    @user = User.find(params[:id])
-    erb :'users/show'
-  end
-
   post '/users' do
     @user = User.new
     @user.name = params[:name]
     @user.email = params[:email]
     @user.password = params[:password]
-    session[:user_id] = @user.id
     @user.save
+    binding.pry
+    session[:user_id] = @user.id
     redirect to "/users/#{@user.id}"
   end
+
+  get "/users/:id" do
+    @user = User.find(params[:id])
+    erb :'users/show'
+  end
+
+
 
   get "/users/:id/edit" do
     @user = User.find(params[:id])
@@ -55,7 +58,7 @@ class UsersController < Sinatra::Base
 
     post '/add_book' do
       @book = Book.new
-      @book.user = @user.id
+      @book.user = @user
       @book.title = params[:title]
       @book.author = params[:author]
       @book.year_published = params[:year_published]
