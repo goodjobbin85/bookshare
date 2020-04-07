@@ -1,12 +1,7 @@
 require './config/environment'
 require 'pry'
 
-class BooksController < Sinatra::Base
-
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
-  end
+class BooksController < ApplicationController
 
   get '/books' do
     @books = Book.all
@@ -23,7 +18,7 @@ class BooksController < Sinatra::Base
   end
 
   post '/books' do
-    puts session[:user_id]
+    session[:user_id]
     @book = Book.new
     @book.user_id = session[:user_id]
     @book.title = params[:title]
@@ -31,7 +26,6 @@ class BooksController < Sinatra::Base
     @book.year_published = params[:year_published]
     @book.condition = params[:condition]
     @book.save
-    binding.pry
     redirect to "/books/#{@book.id}"
   end
 

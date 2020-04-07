@@ -1,6 +1,6 @@
 
   <div align="center">
-    <h1>Welcome To Bookshare!</h1>
+    <h1>Welcome To Bookshare, <%= current_user.name.capitalize if current_user %>!</h1>
     <p><a href="/books">Browse Our Library</a></p>
     <p>
       Our mission is to help spread knowledge at no cost.
@@ -9,6 +9,9 @@
       lend your books to those that may be interested. Let's learn
       together!
     </p>
-
-    <p><a href="/users/new">Sign Up</a> | <a href="/login">Log In</a></p>
+    <% if logged_in? %>
+      <p><a href="/logout">Log Out</a></p>
+    <% else %>
+      <p><a href="/users/new">Sign Up</a> | <a href="/login">Log In</a></p>
+    <% end %>
   </div>

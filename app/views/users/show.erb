@@ -1,9 +1,9 @@
 <h1>User Details</h1>
-
-<p><%= @user.name %></p>
-<p><%= @user.email %></p>
-<p><%= @user.password %></p>
-
+<% if current_user %>
+  <p><%= current_user.name %></p>
+  <p><%= current_user.email %></p>
+  <p><%= current_user.password %></p>
+<% end %>
 
 <a href="/">Home</a>
 <a href="/users/<%= @user.id %>/edit">Edit</a>
@@ -45,5 +45,10 @@
 </form>
 
 <div align="center">
-  <p><a href="/logout">Log Out</a></p>
+
+  <% if logged_in? %>
+    <p><a href="/logout">Log Out</a></p>
+  <% else %>
+    <p><a href="/login">Log In</a></p>
+  <% end %>
 </div>

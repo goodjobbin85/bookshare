@@ -1,11 +1,6 @@
 require 'pry'
 
-class UsersController < Sinatra::Base
-
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
-  end
+class UsersController < ApplicationController
 
   get '/users' do
     @users = User.all
@@ -13,7 +8,7 @@ class UsersController < Sinatra::Base
   end
 
   get '/users/new' do
-    erb :'users/new'
+      erb :'users/new'
   end
 
   post '/users' do
@@ -22,13 +17,17 @@ class UsersController < Sinatra::Base
     @user.email = params[:email]
     @user.password = params[:password]
     @user.save
-    session[:user_id] = @user.id
-    redirect to "/users/#{@user.id}"
+    session[:user_id] = current_user.id
+    redirect to "/users/#{current_user.id}"
   end
 
   get "/users/:id" do
-    @user = User.find(params[:id])
-    erb :'users/show'
+    if !logged_in?
+      redirect '/login'
+    else
+      @user = User.find(params[:id])
+      erb :'users/show'
+    end 
   end
 
 
