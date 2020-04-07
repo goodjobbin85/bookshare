@@ -1,5 +1,6 @@
 require './config/environment'
 require 'pry'
+
 class ApplicationController < Sinatra::Base
 
   configure do
@@ -30,5 +31,15 @@ class ApplicationController < Sinatra::Base
   get '/logout' do
     session.clear
     redirect to '/'
+  end
+
+  helpers do
+    def logged_in?
+      !!session[:user_id]
+    end
+
+    def current_user
+      User.find(session[:user_id])
+    end
   end
 end

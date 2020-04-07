@@ -22,7 +22,6 @@ class UsersController < Sinatra::Base
     @user.email = params[:email]
     @user.password = params[:password]
     @user.save
-    binding.pry
     session[:user_id] = @user.id
     redirect to "/users/#{@user.id}"
   end

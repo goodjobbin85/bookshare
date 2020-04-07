@@ -1,4 +1,5 @@
 require './config/environment'
+require 'pry'
 
 class BooksController < Sinatra::Base
 
@@ -22,6 +23,7 @@ class BooksController < Sinatra::Base
   end
 
   post '/books' do
+    puts session[:user_id]
     @book = Book.new
     @book.user_id = session[:user_id]
     @book.title = params[:title]
