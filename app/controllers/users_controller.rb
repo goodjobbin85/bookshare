@@ -1,3 +1,5 @@
+require 'pry'
+
 class UsersController < Sinatra::Base
 
   configure do
@@ -40,6 +42,7 @@ class UsersController < Sinatra::Base
     @user.email = params[:email]
     @user.password = params[:password]
     @user.save
+
     redirect to "/users/#{@user.id}"
   end
 
@@ -50,4 +53,14 @@ class UsersController < Sinatra::Base
       redirect '/users'
     end
 
+    post '/add_book' do
+      @book = Book.new
+      @book.user = @user.id
+      @book.title = params[:title]
+      @book.author = params[:author]
+      @book.year_published = params[:year_published]
+      @book.condition = params[:condition]
+      @book.save
+      redirect to "/books/#{@book.id}"
+    end
 end

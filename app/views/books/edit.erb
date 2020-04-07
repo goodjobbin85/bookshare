@@ -1,6 +1,6 @@
 <h1>Edit Book</h1>
 
-<form method="POST" action="/books">
+<form method="POST" action="/books/<%= @book.id %>">
   <div align="center">
     <input id="hidden" type="hidden" name="_method" value="patch">
     <p>

@@ -1,8 +1,9 @@
 <h1>Edit User</h1>
 
-<form method="POST" action="/">
+<form method="post" action="/users/<%= @user.id %>">
+  <input id="hidden" type="hidden" name="_method" value="patch">
   <div align="center">
-    <input id="hidden" type="hidden" name="_method" value="patch">
+
     <p>
       <label for="username" name="name">Name</label>
       <input type="text" name="name" value="<%= @user.name %>">
