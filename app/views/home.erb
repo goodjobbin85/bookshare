@@ -1,6 +1,6 @@
 
   <div align="center">
-    <h1>Welcome To Bookshare <%= current_user.name.capitalize if current_user %></h1>
+    <h1>Welcome To Bookshare <a href="/users/<%= current_user.id if current_user%>"><%= current_user.name.capitalize if current_user %></a></h1>
     <p><a href="/books">Browse Our Library</a></p>
     <p>
       Our mission is to help spread knowledge at no cost.
