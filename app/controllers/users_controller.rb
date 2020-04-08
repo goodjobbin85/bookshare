@@ -17,8 +17,8 @@ class UsersController < ApplicationController
     @user.email = params[:email]
     @user.password = params[:password]
     @user.save
-    session[:user_id] = current_user.id
-    redirect to "/users/#{current_user.id}"
+    session[:user_id] = @user.id
+    redirect to "/users/#{@user.id}"
   end
 
   get "/users/:id" do
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     else
       @user = User.find(params[:id])
       erb :'users/show'
-    end 
+    end
   end
 
 

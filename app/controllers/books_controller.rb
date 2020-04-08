@@ -9,7 +9,8 @@ class BooksController < ApplicationController
   end
 
   get '/books/new' do
-    erb :'books/new'
+    redirect '/'
+#    erb :'books/new'
   end
 
   get '/books/:id' do
