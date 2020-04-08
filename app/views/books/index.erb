@@ -1,10 +1,12 @@
 <div align="center">
   <h1>Our Current Library</h1>
-  <p><a href='/books/new'>Add Book To Library</a></p>
+  <% if logged_in? %>
+    <p><a href='/users/<%= current_user.id %>'>Add Book To Library</a></p>
+  <% end %>
 </div>
 <div align="center">
   <% @books.each do |book| %>
     <p><a href="/books/<%= book.id %>"><%= book.title %></a> written by
-      <%= book.author %></p>
+      <%= book.author %> | <%= book.status %></p>
   <% end %>
 </div>

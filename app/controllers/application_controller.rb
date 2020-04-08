@@ -43,4 +43,12 @@ class ApplicationController < Sinatra::Base
       @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
   end
+
+  def self.check_status
+      if self.status == nil?
+        Checkout
+      else
+        Not Available
+      end
+  end
 end
