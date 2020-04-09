@@ -1,4 +1,6 @@
-<h1>Book Details</h1><a href="/books/<%= @book.id %>/edit">Edit</a>
+
+
+<h1>Book Details</h1>
 <p><a href="/books">All Books</a></p>
 
 <p>Title: <%= @book.title %></p>
@@ -8,8 +10,10 @@
 <% if @book.user %>
   <p>Owner: <%= @book.user.name %></p>
 <% end %>
-
-<form action="/books/<%= @book.id %>" method="POST">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
-</form>
+<% if current_user.id == @book.user_id %>
+  <a href="/books/<%= @book.id %>/edit">Edit</a>
+  <form action="/books/<%= @book.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="delete">
+  </form>
+<% end %>

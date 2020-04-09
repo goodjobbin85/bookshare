@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   get "/users/:id" do
-    if !logged_in?
+    if !logged_in? && current_user
       redirect '/login'
     else
       @user = User.find(params[:id])
