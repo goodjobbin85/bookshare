@@ -6,7 +6,12 @@
 </div>
 <div align="center">
   <% @books.each do |book| %>
-    <p><a href="/books/<%= book.id %>"><%= book.title %></a> written by
+    <% if logged_in? %>
+        <p><a href="/books/<%= book.id %>"><%= book.title %></a> written by
+          <%= book.author %> | <%= book.status %></p>
+    <% else %>
+    <p><%= book.title %> written by
       <%= book.author %> | <%= book.status %></p>
+    <% end %>
   <% end %>
 </div>
