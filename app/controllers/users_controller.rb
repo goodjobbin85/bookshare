@@ -3,8 +3,12 @@ require 'pry'
 class UsersController < ApplicationController
 
   get '/users' do
-    @users = User.all
-    erb :'users/index'
+    if !logged_in?
+      redirect '/login'
+    else
+      @users = User.all
+      erb :'users/index'
+    end
   end
 
   get '/users/new' do
@@ -27,7 +31,7 @@ class UsersController < ApplicationController
     else
       @user = User.find(params[:id])
       erb :'users/show'
-    end 
+    end
   end
 
 
