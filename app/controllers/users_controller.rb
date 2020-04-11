@@ -1,3 +1,4 @@
+#84G02Sm&RqP
 require 'pry'
 
 class UsersController < ApplicationController
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
 
   get "/users/:id" do
     if !logged_in?
-      redirect '/'
+      redirect '/login'
     else
       @user = User.find(params[:id])
       erb :'users/show'
@@ -37,9 +38,12 @@ class UsersController < ApplicationController
 
 
   get "/users/:id/edit" do
-
-    @user = User.find(params[:id])
-    erb :'users/edit'
+      @user = User.find(params[:id])
+      if current_user.id != @user.id
+        redirect '/login'
+      else
+        erb :'users/edit'
+      end
   end
 
   patch "/users/:id" do
