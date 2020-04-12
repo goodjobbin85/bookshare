@@ -17,6 +17,13 @@
 
 
     <div class="wrapper">
+      <div align="right">
+        <% if logged_in? %>
+          <h4>Logged in as: <a href="/users/<%= current_user.id %>"><%= current_user.name.capitalize %></a> | <a href="/logout">Log Out</a></h4>
+        <% else %>
+          <h4><a href="/login">Log In</a></h4>
+        <% end %>
+      </div>
 
         <%= yield %>
 
