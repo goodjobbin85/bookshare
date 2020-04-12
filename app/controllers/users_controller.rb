@@ -62,15 +62,4 @@ class UsersController < ApplicationController
       @user.delete
       redirect '/users'
     end
-
-    post '/add_book' do
-      @book = Book.new
-      @book.user = @user
-      @book.title = params[:title]
-      @book.author = params[:author]
-      @book.year_published = params[:year_published]
-      @book.condition = params[:condition]
-      @book.save
-      redirect to "/books/#{@book.id}"
-    end
 end
